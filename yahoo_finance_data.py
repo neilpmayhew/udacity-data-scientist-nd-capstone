@@ -1,11 +1,13 @@
-import requests
 import re
 import datetime
+import os
+import pandas as pd
+import pywt
 
 
-def download_finance_data(currency_pairs, from_date, to_date,target_dir):
+def download_finance_data(currency_pairs, from_date, to_date):
     """
-    download currency data as a csv from yahoo finance for a currency code pair between from_date and to_date
+    download currency data from yahoo finance for a currency code pair between from_date and to_date.
 
     args:
         currency_pair:
@@ -14,22 +16,30 @@ def download_finance_data(currency_pairs, from_date, to_date,target_dir):
             date range from
         to_date:
             date range to
+    returns:
+        pandas data frame
     """
     period_1 = datetime.datetime.timestamp(from_date)
     period_2 = datetime.datetime.timestamp(to_date)
+
+    df = None
 
     for currency_pair in currency_pairs:
 
         url = __get_url(currency_pair, period_1, period_2)
 
-        r = requests.get(url)
+        _df = pd.read_csv(url)
 
-        with open(
-                f"{target_dir}/{currency_pair}_{from_date:%Y%m%d}_{to_date:%Y%m%d}.csv",
-                'wb') as f:
-            f.write(r.content)
+        _df.columns = map(str.lower, _df.columns)
+        _df.insert(0,'currency_pair',f'{currency_pair}')
 
-        f.close()
+        if df is None:
+            df = _df
+        else:
+            df = pd.concat([df,_df],)
+
+
+    return df
 
 def __get_url(currency_pair, period_1, period_2):
     """
