@@ -1,9 +1,12 @@
+import sys
+sys.path.append(".")
+
 from datetime import datetime
-from yahoo_finance_data import download_finance_data
+from data.yahoo_finance_data import download_finance_data
 from dateutil.relativedelta import relativedelta
-from pre_processing import PreProcessing
-from time2vec_transformer_model import Time2VecTransformer
-from train_evaluate_model_helper import *
+from data.pre_processing import PreProcessing
+from model.time2vec_transformer_model import Time2VecTransformer
+from model.train_evaluate_model_helper import *
 
 to_date = datetime.now()
 from_date = to_date - relativedelta(days=700)
