@@ -152,7 +152,7 @@ class Time2VecTransformer():
     """
     Transformer model with time embeddings
     """
-    def __init__(self,model_name,seq_len,d_k,d_v,n_heads,ff_dim):
+    def __init__(self,model_name,seq_len,d_k,d_v,n_heads,ff_dim,no_features):
         self.model_name = model_name
         self.seq_len = seq_len
         self.d_k = d_k
@@ -167,7 +167,7 @@ class Time2VecTransformer():
         attn_layer3 = TransformerEncoder(d_k, d_v, n_heads, ff_dim)
 
         # Construct model
-        in_seq = Input(shape=(seq_len, 5))
+        in_seq = Input(shape=(seq_len,no_features))
         x = time_embedding(in_seq)
         x = Concatenate(axis=-1)([in_seq, x])
         x = attn_layer1((x, x, x))

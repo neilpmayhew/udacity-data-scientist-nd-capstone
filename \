@@ -17,13 +17,13 @@ def split_train_evalute_model(pre_processing,model,epochs,batch_size):
     plot_train_val_test_split(pre_processing)
 
     print('-------------------------------')
-    print(f'Fitting model: {epochs} epochs')
+    print(f'Fitting model: {model.model_name}')
     print('-------------------------------')
 
     model.fit(pre_processing.X_train,pre_processing.y_train,pre_processing.X_val,pre_processing.y_val,batch_size,epochs)
 
     print('----------------------------------')
-    print(f'Evaluating model: {epochs} epochs')
+    print(f'Generating predictions: {model.model_name}')
     print('----------------------------------')
 
     #Calculate predication for training, validation and test data
@@ -37,7 +37,7 @@ def split_train_evalute_model(pre_processing,model,epochs,batch_size):
     test_eval = model.best_model.evaluate(pre_processing.X_test, pre_processing.y_test, verbose=0)
 
     print('---------------------------------------------')
-    print(f"Time2Vec Transformer Model {model.model_name}")
+    print(f"Evaluation metrics: {model.model_name}")
     print('---------------------------------------------')
 
     print('Evaluation metrics')
