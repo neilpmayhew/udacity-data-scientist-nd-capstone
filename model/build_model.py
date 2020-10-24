@@ -1,3 +1,6 @@
+import warnings
+warnings.filterwarnings('ignore')
+
 import sys
 sys.path.append(".")
 
@@ -18,7 +21,7 @@ d_k = 512
 d_v = 512
 n_heads = 24
 ff_dim = 512
-epochs = 1 #40
+epochs = 40
 batch_size = 32
 no_features = 5
 

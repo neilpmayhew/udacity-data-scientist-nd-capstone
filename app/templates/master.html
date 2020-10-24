@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Disasters</title>
+    <title>BTC-GBP Forecast</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -18,12 +18,11 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/">Disaster Response Project</a>
+            <a class="navbar-brand" href="/">BTC-GBP Forecast</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="https://www.udacity.com/">Made with Udacity</a></li>
-                <li><a href="https://github.com/">Contact</a></li>
+                <li><a href="https://github.com/neilpmayhew/udacity-data-scientist-nd-capstone">GitHub</a></li>
             </ul>
         </div>
     </div>
@@ -32,16 +31,15 @@
 
 <div class="jumbotron">
     <div class="container">
-        <h1 class="text-center">Disaster Response Project</h1>
-        <p class="text-center">Analyzing message data for disaster response</p>
+        <h1 class="text-center">BTC-GBP Forecast</h1>
+        <p class="text-center">Forecasting BTC-GBP closing returns</p>
         <hr />
       
         <div class="row">
             <div class="col-lg-12 form-group-lg">
-                <form action="/go" method="get">
-                    <input type="text" class="form-control form-control-lg" name="query" placeholder="Enter a message to classify">
+                <form action="/forecast" method="get">
                     <div class="col-lg-offset-5">
-                        <button type="submit" class="btn btn-lg btn-success">Classify Message</button>
+                        <button type="submit" class="btn btn-lg btn-success">Forecast</button>
                     </div>
                 </form>
             </div>
@@ -55,9 +53,33 @@
 <div class="container">
     {% block content %}
         <div class="page-header">
-            <h1 class="text-center">Overview of Training Dataset</h1>
+            <h1 class="text-center">BTC-GBP Model Training Overview</h1>
         </div>
     {% endblock %}
+
+{% if train_eval is defined %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Evaluation Metrics</th>
+                <th scope="col">Loss (MSE)</th>
+                <th scope="col">MAE</th>
+                <th scope="col">MAPE</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Training Data</td><td>{{train_eval['loss[mse]']}}</td><td>{{train_eval['mae']}}</td><td>{{train_eval['mape']}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Valuation Data</td><td>{{val_eval['loss[mse]']}}</td><td>{{val_eval['mae']}}</td><td>{{val_eval['mape']}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Test Data</td><td>{{test_eval['loss[mse]']}}</td><td>{{test_eval['mae']}}</td><td>{{test_eval['mape']}}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endif %}
 
     {% for id in ids %}
         <div id="{{id}}"></div>

@@ -5,7 +5,7 @@ import numpy as np
 import pickle as pkl
 
 class ModelData():
-    def __init__(self,pre_processing,train_pred,val_pred,test_pred,train_eval,val_eval,test_eval,training_history):
+    def __init__(self,pre_processing,train_pred,val_pred,test_pred,train_eval,val_eval,test_eval,training_history,seq_len):
         self.pre_processing = pre_processing
 
         self.train_pred = train_pred
@@ -16,6 +16,16 @@ class ModelData():
         self.val_eval = {'loss[mse]': val_eval[0],'mae':val_eval[1],'mape':val_eval[2]}
         self.test_eval = {'loss[mse]': test_eval[0],'mae':test_eval[1],'mape':test_eval[2]}
         self.training_history = training_history
+
+        self.seq_len = seq_len
+
+def forecast(df, seq_len,model):
+
+    seq = np.array([df.iloc[-seq_len:,-5:].values])
+
+    return model.predict(seq)[0][0]
+
+
 
 def split_train_evalute_model(pre_processing,model,epochs,batch_size,plot=True):
 
@@ -63,7 +73,7 @@ def split_train_evalute_model(pre_processing,model,epochs,batch_size,plot=True):
     if plot:
         plot_model_metrics(model)
 
-    model_data = ModelData(pre_processing,train_pred,val_pred,test_pred,train_eval,val_eval,test_eval,model.history.history)
+    model_data = ModelData(pre_processing,train_pred,val_pred,test_pred,train_eval,val_eval,test_eval,model.history.history,model.seq_len)
 
     with open(f'{model.model_name}_model_data.pkl',"wb") as f:
          pkl.dump(model_data, f)
