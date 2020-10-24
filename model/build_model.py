@@ -1,3 +1,7 @@
+'''
+Script to build a model and save necessary data to support the web application. Should be scheduled to run daily via chron or similar
+'''
+
 import warnings
 warnings.filterwarnings('ignore')
 
