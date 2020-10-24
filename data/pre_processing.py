@@ -14,6 +14,8 @@ class PreProcessing():
       Init class taking a pandas data frame of raw currency data
 
       args:
+          currency_pair:
+              The currency pair for the data set
           df:
               pandas data frame
       """
