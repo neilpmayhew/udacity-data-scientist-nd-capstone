@@ -48,6 +48,12 @@ To run the flask web app:
 
 
 ### Conclusion
+Predicting any stock price on finance data is incredibly difficult and this is even more the case with Bit Coin given how volatile it is. It was clear during the exploratory data analysis phase that the data (as is normally the case with price data) was not stationary meaning that predicting the raw value was going to be very difficult. Some sort of differencing would be required to produce values that a model could be trained to predict. Various calculations were trialled and compared using mean squared error and secondarily via mean absolute error and mean absolute percentage error. A 7 day moving average of the normalised percentage change gave the best results.
 
+Whilst this 7 day moving average did provide the best results it is not clear how accurate any prediction made will be. There is a possibility that the model is simply remembering the history and reproducing this and it just so happens to fairly closely approximate the future state. 
+
+To further improve the model I would look to including sentiment analysis from twitter. NLP techniques could be used to extract the general feeling towards Bit coin i.e. bullish or bearish and produce a metric that could be included as a feature for training the model.
+
+Additionally perhaps the model could be trained and employed to forecast another cryptocurrency such as Ethereum. Other cryptocurrencies tend to track fairly closely to Bit Coin so perhaps features could be extracted from Bit Coin finance data to aid prediction. 
     
 

@@ -25,8 +25,6 @@ def forecast(df, seq_len,model):
 
     return model.predict(seq)[0][0]
 
-
-
 def split_train_evalute_model(pre_processing,model,epochs,batch_size,plot=True):
 
     model.model.summary()

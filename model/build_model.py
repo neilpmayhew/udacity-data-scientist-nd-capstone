@@ -25,7 +25,7 @@ d_k = 512
 d_v = 512
 n_heads = 24
 ff_dim = 512
-epochs = 40
+epochs = 100
 batch_size = 32
 no_features = 5
 
