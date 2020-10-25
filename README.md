@@ -2,11 +2,11 @@
 ## Udacity Data Scientist Nanodegree Project
 
 ### Project Overview
-This project seeks to forecast the future value of Bit Coin in GBP, initially from historical data alone. Historically this has been done by humans analysing charts and plotting various different metrics in order to look for common patterns or signals to inform when to buy and sell. In more modern times a lot of this is done algorithmically and more recently still machine learning has been employed to assist with this.
+This project seeks to forecast the future value of Bit Coin in GBP, initially from historical data alone. 
 
-Financial data for Bit Coin is time series data. This project will make use of data from the Yahoo Finance service. For a particular currency pair e.g. BTC-GBP (Bit Coin to Great British Pound) a time series date set of daily values can be downloaded for Open, High, Low, Close and Volume.
+It will make use of data from the Yahoo Finance service. For a particular currency pair e.g. BTC-GBP (Bit Coin to Great British Pound) a time series date set of daily values can be downloaded for Open, High, Low, Close and Volume.
 
-The project will seek to forecast the Close value.
+The data is time series data and the project intends to make use of a modified transformer network to train from it. Transformer models, along with their amazing success in NLP have also shown great promise in time series forecasting. The transformer model will implement time embeddings to enable the model to learn periodic and non-periodic patterns. It is hoped that this combined with the self-attention mechanism should enable it to learn patterns from the financial history.
 
 ### Project Statement
 The project needed to accomplish the following:
@@ -20,7 +20,6 @@ The project needed to accomplish the following:
     
 ### Metrics
 This will be modelled as a regression problem and the loss function chosen will be mean squared error (MSE). Additionally mean absolute error (MAE) and mean absolute percentage error (MAPE) will also be calculated and used to score the model.
-
 
 ### Files
 ./data/
@@ -57,3 +56,6 @@ To further improve the model I would look to including sentiment analysis from t
 Additionally, perhaps the model could be trained and employed to forecast another cryptocurrency such as Ethereum. Other cryptocurrencies tend to track fairly closely to Bit Coin so features could be extracted from Bit Coin finance data to aid prediction. 
     
 
+### Acknowledgements
+[stock-predictions-with-state-of-the-art-transformer-and-time-embeddings](https://towardsdatascience.com/stock-predictions-with-state-of-the-art-transformer-and-time-embeddings-3a4485237de6)
+[Python Trading Toolbox: Weighted and Exponential Moving Averages](https://towardsdatascience.com/trading-toolbox-02-wma-ema-62c22205e2a9)
